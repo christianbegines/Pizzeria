@@ -30,6 +30,7 @@ public class pizzeria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         rButonN = new javax.swing.JRadioButton();
         rButonI = new javax.swing.JRadioButton();
@@ -312,67 +313,71 @@ public class pizzeria extends javax.swing.JFrame {
     }//GEN-LAST:event_rButonNActionPerformed
 
     private void botonPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPrecioActionPerformed
-        tipoPizza=(String) this.listaTipos.getSelectedItem();
-        totalesIngredientes=listaIngredientes.getSelectedValuesList();
-        tamaño=(String)this.spinnerTamaño.getValue();
-        
-        if(this.rButonN.isSelected()){
-            precioMasa=9.0; 
+
+        Double precioMasa = 0.0;
+        Double precioTipo = 0.0;
+        Double precioIngredientes = 0.0;
+        Double precioTotal = 0.0;
+        List<String> totalesIngredientes = new ArrayList();
+        String tamaño, tipoPizza;
+
+        tipoPizza = (String) this.listaTipos.getSelectedItem();
+        totalesIngredientes = listaIngredientes.getSelectedValuesList();
+        tamaño = (String) this.spinnerTamaño.getValue();
+
+        if (this.rButonN.isSelected()) {
+            precioMasa = 9.0;
             textMasa.setText("9,0");
         }
-        if(this.rButonI.isSelected()){
-            precioMasa=9.5;
+        if (this.rButonI.isSelected()) {
+            precioMasa = 9.5;
             textMasa.setText("9,50");
         }
-        if(tipoPizza.equalsIgnoreCase("Basica")){
-            precioTipo=3.0;
+        if (tipoPizza.equalsIgnoreCase("Basica")) {
+            precioTipo = 3.0;
         }
-        if(tipoPizza.equalsIgnoreCase("Cuatro Quesos")){
-            precioTipo=5.0;
+        if (tipoPizza.equalsIgnoreCase("Cuatro Quesos")) {
+            precioTipo = 5.0;
         }
-        if(tipoPizza.equalsIgnoreCase("Mexicana")){
-            precioTipo=8.50;
+        if (tipoPizza.equalsIgnoreCase("Mexicana")) {
+            precioTipo = 8.50;
         }
-        if(tipoPizza.equalsIgnoreCase("Barbacoa")){
-            precioTipo=7.0;
+        if (tipoPizza.equalsIgnoreCase("Barbacoa")) {
+            precioTipo = 7.0;
         }
         this.textTipo.setText(precioTipo.toString());
-        
-        for(String ing:totalesIngredientes){
-            if(ing.equalsIgnoreCase("Jamon")){
-                precioIngredientes+=0.5;
+
+        for (String ing : totalesIngredientes) {
+            if (ing.equalsIgnoreCase("Jamon")) {
+                precioIngredientes += 0.5;
             }
-            if(ing.equalsIgnoreCase("Olivas")){
-                precioIngredientes+=1;
+            if (ing.equalsIgnoreCase("Olivas")) {
+                precioIngredientes += 1;
             }
-            if(ing.equalsIgnoreCase("Cebolla")){
-                precioIngredientes+=0.5;
+            if (ing.equalsIgnoreCase("Cebolla")) {
+                precioIngredientes += 0.5;
             }
-            if(ing.equalsIgnoreCase("Tomate")){
-                precioIngredientes+=1.5;
+            if (ing.equalsIgnoreCase("Tomate")) {
+                precioIngredientes += 1.5;
             }
-            if(ing.equalsIgnoreCase("Queso")){
-                precioIngredientes+=2.5;
+            if (ing.equalsIgnoreCase("Queso")) {
+                precioIngredientes += 2.5;
             }
-            
+
         }
         textIngredientes.setText(precioIngredientes.toString());
-        
-        
-        
-        if(tamaño.equalsIgnoreCase("Mediana")){
-            precioTotal=precioMasa+precioIngredientes+precioTipo*1.15;
+
+        if (tamaño.equalsIgnoreCase("Mediana")) {
+            precioTotal = precioMasa + precioIngredientes + precioTipo * 1.15;
             this.textTamaño.setText("15%");
         }
-        if(tamaño.equalsIgnoreCase("Familiar")){
-            precioTotal=precioMasa+precioIngredientes+precioTipo*1.30;
+        if (tamaño.equalsIgnoreCase("Familiar")) {
+            precioTotal = precioMasa + precioIngredientes + precioTipo * 1.30;
             this.textTamaño.setText("30%");
         }
         this.textPrecioTotal.setText(precioTotal.toString());
-        
-         
-        
-        
+
+
     }//GEN-LAST:event_botonPrecioActionPerformed
 
     /**
@@ -412,6 +417,7 @@ public class pizzeria extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonPrecio;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -438,10 +444,5 @@ public class pizzeria extends javax.swing.JFrame {
     private javax.swing.JTextField textTamaño;
     private javax.swing.JTextField textTipo;
     // End of variables declaration//GEN-END:variables
-    Double precioMasa=0.0;
-    Double precioTipo=0.0;
-    Double precioIngredientes=0.0;
-    Double precioTotal=0.0;
-    List<String>totalesIngredientes=new ArrayList();
-    String tamaño,tipoPizza;
+
 }
