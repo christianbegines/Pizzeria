@@ -20,15 +20,18 @@ public class pizzeria3 extends javax.swing.JFrame {
      */
     public pizzeria3() {
         initComponents();
-        String masa= this.tipoMasa.getSelection().getActionCommand();
-                
-        String tipo= this.listaTipos.getActionCommand();        
-        String tam=(String)this.spinnerTamaño.getValue();
+        String masa;
         
-        List lista = listaIngredientes.getSelectedValuesList();
-        
+        if(this.rButonN.isSelected()){
+            masa="Normal";
+        } else{
+            masa="Integral";
+        }               
+        tipo=this.listaTipos.getActionCommand();
+        tam=(String)this.spinnerTamaño.getValue();        
+        lista = listaIngredientes.getSelectedValuesList();       
         p=new Pizza(masa,tipo,tam,lista);
-        p.calcularPrecio();
+//        p.calcularPrecio();
         this.textoFinal.setText(p.toString());
         
     }
@@ -54,8 +57,6 @@ public class pizzeria3 extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         spinnerTamaño = new javax.swing.JSpinner();
         jPanel5 = new javax.swing.JPanel();
-        l9 = new javax.swing.JLabel();
-        textPrecioTotal = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         textoFinal = new javax.swing.JTextArea();
         l1 = new javax.swing.JLabel();
@@ -66,7 +67,6 @@ public class pizzeria3 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 0));
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 0));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 0), 1, true));
 
         tipoMasa.add(rButonN);
@@ -75,11 +75,6 @@ public class pizzeria3 extends javax.swing.JFrame {
         rButonN.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 rButonNItemStateChanged(evt);
-            }
-        });
-        rButonN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rButonNActionPerformed(evt);
             }
         });
 
@@ -112,7 +107,6 @@ public class pizzeria3 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 255, 0));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 0), 1, true));
 
         listaTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Basica", "Cuatro Quesos", "Barbacoa", "Mexicana", "" }));
@@ -120,11 +114,6 @@ public class pizzeria3 extends javax.swing.JFrame {
         listaTipos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 listaTiposItemStateChanged(evt);
-            }
-        });
-        listaTipos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listaTiposActionPerformed(evt);
             }
         });
 
@@ -145,7 +134,6 @@ public class pizzeria3 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(0, 255, 0));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 0), 1, true));
 
         listaIngredientes.setModel(new javax.swing.AbstractListModel() {
@@ -177,7 +165,6 @@ public class pizzeria3 extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(0, 255, 0));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 0), 1, true));
 
         spinnerTamaño.setModel(new javax.swing.SpinnerListModel(new String[] {"Pequeña", "Mediana", "Familiar"}));
@@ -202,12 +189,7 @@ public class pizzeria3 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 0, 0), 1, true));
-
-        l9.setText("TOTAL");
-
-        textPrecioTotal.setText("0");
 
         textoFinal.setColumns(20);
         textoFinal.setRows(5);
@@ -217,26 +199,17 @@ public class pizzeria3 extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 302, Short.MAX_VALUE)
-                        .addComponent(l9, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(textPrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textPrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         l1.setText("Masa");
@@ -298,78 +271,66 @@ public class pizzeria3 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listaTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaTiposActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_listaTiposActionPerformed
-
-    private void rButonNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButonNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rButonNActionPerformed
-
-    private void rButonNItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rButonNItemStateChanged
-        precioMasa = 9.0;
-       
-        this.CalcularPrecio();
-    }//GEN-LAST:event_rButonNItemStateChanged
-
-    private void rButonIItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rButonIItemStateChanged
-        precioMasa = 9.5;
-        
-        this.CalcularPrecio();
-
-    }//GEN-LAST:event_rButonIItemStateChanged
-
-    private void listaTiposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listaTiposItemStateChanged
-        tipoPizza = (String) this.listaTipos.getSelectedItem();
-        if (tipoPizza.equalsIgnoreCase("Basica")) {
-            precioTipo = 3.0;
-        }
-        if (tipoPizza.equalsIgnoreCase("Cuatro Quesos")) {
-            precioTipo = 5.0;
-        }
-        if (tipoPizza.equalsIgnoreCase("Mexicana")) {
-            precioTipo = 8.50;
-        }
-        if (tipoPizza.equalsIgnoreCase("Barbacoa")) {
-            precioTipo = 7.0;
-
-        }
-        this.CalcularPrecio();
-
-    }//GEN-LAST:event_listaTiposItemStateChanged
-
     private void listaIngredientesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaIngredientesValueChanged
-       
-        totalesIngredientes = listaIngredientes.getSelectedValuesList();
-        precioIngredientes = 0.0;
-        for (String ing : totalesIngredientes) {
-            if (ing.equalsIgnoreCase("Jamon")) {
-                precioIngredientes += 0.5;
-            }
-            if (ing.equalsIgnoreCase("Olivas")) {
-                precioIngredientes += 1;
-            }
-            if (ing.equalsIgnoreCase("Cebolla")) {
-                precioIngredientes += 0.5;
-            }
-            if (ing.equalsIgnoreCase("Tomate")) {
-                precioIngredientes += 1.5;
-            }
-            if (ing.equalsIgnoreCase("Queso")) {
-                precioIngredientes += 2.5;
-            }
-           
-        }
-
-       
-        this.CalcularPrecio();
+         lista = listaIngredientes.getSelectedValuesList();
+         p.setListaIngredientes(lista);
+         this.textoFinal.setText(p.toString());
+         
     }//GEN-LAST:event_listaIngredientesValueChanged
 
     private void spinnerTamañoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerTamañoStateChanged
-        
-
-
+       tam=(String)this.spinnerTamaño.getValue(); 
+        if(tam.equalsIgnoreCase("Mediana")){
+           p.setTamaño("Mediana");
+           this.textoFinal.setText(p.toString());
+              
+        }
+       if(tam.equalsIgnoreCase("Familiar")){
+           p.setTamaño("Familiar"); 
+           this.textoFinal.setText(p.toString());
+           
+       }
+       if(tam.equalsIgnoreCase("Pequeña")){
+           p.setTamaño("Pequeña"); 
+           this.textoFinal.setText(p.toString());
+           
+       }
+       
     }//GEN-LAST:event_spinnerTamañoStateChanged
+
+    private void rButonNItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rButonNItemStateChanged
+        p.setMasa("Normal");
+        this.textoFinal.setText(p.toString());
+    }//GEN-LAST:event_rButonNItemStateChanged
+
+    private void rButonIItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rButonIItemStateChanged
+       
+        p.setMasa("Integral");
+         this.textoFinal.setText(p.toString());
+    }//GEN-LAST:event_rButonIItemStateChanged
+
+    private void listaTiposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listaTiposItemStateChanged
+         String tipo= (String)this.listaTipos.getSelectedItem();
+        if (tipo.equalsIgnoreCase("Basica")) {
+            
+            p.setTipo("Basica");
+
+        }
+        if (tipo.equalsIgnoreCase("Cuatro Quesos")) {
+           
+            p.setTipo("Cuatro Quesos");
+
+        }
+        if (tipo.equalsIgnoreCase("Mexicana")) {
+            p.setTipo("Mexicana");
+
+        }
+        if (tipo.equalsIgnoreCase("Barbacoa")) {
+             p.setTipo("Barbacoa");
+
+        }
+        this.textoFinal.setText(p.toString());
+    }//GEN-LAST:event_listaTiposItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -409,19 +370,7 @@ public class pizzeria3 extends javax.swing.JFrame {
         });
     }
 
-    public void CalcularPrecio() {
-          tamaño = (String) this.spinnerTamaño.getValue();
-        precioTotal = precioMasa + precioIngredientes + precioTipo;
-
-        if (tamaño.equalsIgnoreCase("Mediana")) {
-            precioTotal = precioTotal * 1.15;
-        }
-        if (tamaño.equalsIgnoreCase("Grande")) {
-            precioTotal = precioTotal * 1.3;
-        }
-
-        textPrecioTotal.setText(precioTotal.toString());
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
@@ -435,13 +384,11 @@ public class pizzeria3 extends javax.swing.JFrame {
     private javax.swing.JLabel l2;
     private javax.swing.JLabel l3;
     private javax.swing.JLabel l4;
-    private javax.swing.JLabel l9;
     private javax.swing.JList listaIngredientes;
     private javax.swing.JComboBox listaTipos;
     private javax.swing.JRadioButton rButonI;
     private javax.swing.JRadioButton rButonN;
     private javax.swing.JSpinner spinnerTamaño;
-    private javax.swing.JTextField textPrecioTotal;
     private javax.swing.JTextArea textoFinal;
     private javax.swing.ButtonGroup tipoMasa;
     // End of variables declaration//GEN-END:variables
@@ -450,6 +397,7 @@ public class pizzeria3 extends javax.swing.JFrame {
     Double precioTipo = 0.0;
     Double precioIngredientes = 0.0;
     Double precioTotal=0.0;
-    String tamaño, tipoPizza;
+    List lista;
+    String tamaño, tipoPizza,tam,masa,tipo;
      List<String> totalesIngredientes = new ArrayList();
 }

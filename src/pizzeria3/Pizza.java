@@ -37,8 +37,8 @@ public class Pizza {
     private final double ITOMATE = 1.5;
     private final double ICEBOLLA = 2.50;
     private final double IOLIVAS = 1;
-    private final double PMEDIANA=1.15;
-    private final double PGRANDE=1.3;
+    private final double PMEDIANA=0.15;
+    private final double PGRANDE=0.30;
 
     public Pizza(String masa, String tipo, String tamaño, List<String> ingredientes) {
         this.masa = masa;
@@ -88,17 +88,21 @@ public class Pizza {
         //tipo masa
         if (masa.equalsIgnoreCase("Normal")) {
             precioMasa = MASANORMAL;
+            
         }
-        if (masa.equalsIgnoreCase("Inregral")) {
+        if (masa.equalsIgnoreCase("Integral")) {
             precioMasa = MASAINTEGRAL;
+            
         }
         //tipo pizza
         if (tipo.equalsIgnoreCase("Basica")) {
             precioTipo = TBASICA;
+            this.setTipo("Basica");
 
         }
         if (tipo.equalsIgnoreCase("Cuatro Quesos")) {
             precioTipo = TCUATRO;
+            this.setTipo("Cuatro Quesos");
 
         }
         if (tipo.equalsIgnoreCase("Mexicana")) {
@@ -134,18 +138,28 @@ public class Pizza {
         precioTotal = precioMasa + precioIngredientes + precioTipo;
          //tamaño
          if (tamaño.equalsIgnoreCase("Mediana")) {
-            precioTotal = precioTotal * PMEDIANA;
+            precioTotal = (precioTotal * PMEDIANA)+precioTotal;
+            precioTamaño=precioTotal* PMEDIANA;
         }
-        if (tamaño.equalsIgnoreCase("Grande")) {
-            precioTotal = precioTotal *PGRANDE ;
+        if (tamaño.equalsIgnoreCase("Familiar")) {
+            precioTotal = precioTotal *PGRANDE+precioTotal ;
+            precioTamaño=precioTotal*PGRANDE;
         }
+        
         return precioTotal;
 
     }
 
     @Override
     public String toString() {
-       return "Pizza:|Tipo de masa: " + masa+"/Precio: "+ precioMasa.toString()+"|" + "\n"+"|Tipo de pizaa: " + tipo +"/Precio: "+ precioTipo.toString()+"|"+ "\n" +"|Ingredientes :"+ listaIngredientes.toString()+"/Precio"+ precioIngredientes.toString()  +"/Precio: "+ "|Tamaño:" + tamaño +"/Precio"+precioTamaño.toString()+"|PRECIO TOTAL= "+precioTotal; 
+       double precio= this.calcularPrecio();
+       return "Pizza:|Tipo de masa: " + masa+
+               "/Precio masa : "+ precioMasa+"|" 
+               + "\n"+"|Tipo de pizaa: " + tipo +"/Precio tipo: "+ precioTipo
+               +"|"+ "\n" +"|Ingredientes :"+ listaIngredientes.toString()+"\n"
+               +"/Precio ing :"+ precioIngredientes.toString()+"\n"
+               + "|Tamaño: " + tamaño +"/Precio  "+precioTamaño+"\n"
+               +"|PRECIO TOTAL= "+ precio; 
              //   
     }
     
