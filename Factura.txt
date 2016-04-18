@@ -1,0 +1,6 @@
+Pizza:|Tipo de masa: Normal/Precio masa : 9.0|
+|Tipo de pizaa: Basica/Precio tipo: 3.0|
+|Ingredientes :[]
+/Precio ing :0.0
+|Tamaño: Pequeña/Precio  0.0
+|PRECIO TOTAL= 12.0
