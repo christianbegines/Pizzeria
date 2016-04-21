@@ -1,6 +1,7 @@
-Pizza:|Tipo de masa: Normal/Precio masa : 9.0|
-|Tipo de pizaa: Basica/Precio tipo: 3.0|
-|Ingredientes :[]
-/Precio ing :0.0
-|Tamaño: Pequeña/Precio  0.0
-|PRECIO TOTAL= 12.0
+2016-04-21T12:44:22.894
+Pizza:|Tipo de masa: Integral/Precio masa : 9.5|
+|Tipo de pizaa: Mexicana/Precio tipo: 8.5
+|Ingredientes :[Queso]
+/Precio ing :0.75
+|Tamaño: Mediana/Precio  3.234375
+|PRECIO TOTAL= 21.5625

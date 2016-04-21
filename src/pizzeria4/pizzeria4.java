@@ -34,7 +34,7 @@ public class pizzeria4 extends javax.swing.JFrame {
         lista = listaIngredientes.getSelectedValuesList();       
         p=new Pizza(masa,tipo,tam,lista);
 //        p.calcularPrecio();
-        this.textoFinal.setText(p.toString());
+        this.textoFinal.setText(p.pedido());
         
     }
 
@@ -62,6 +62,7 @@ public class pizzeria4 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         textoFinal = new javax.swing.JTextArea();
         botonFactura = new javax.swing.JButton();
+        botonCargar = new javax.swing.JButton();
         l1 = new javax.swing.JLabel();
         l2 = new javax.swing.JLabel();
         l3 = new javax.swing.JLabel();
@@ -205,24 +206,38 @@ public class pizzeria4 extends javax.swing.JFrame {
             }
         });
 
+        botonCargar.setText("Cargar Precios");
+        botonCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCargarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(botonFactura)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonCargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(botonCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
@@ -288,7 +303,7 @@ public class pizzeria4 extends javax.swing.JFrame {
     private void listaIngredientesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaIngredientesValueChanged
          lista = listaIngredientes.getSelectedValuesList();
          p.setListaIngredientes(lista);
-         this.textoFinal.setText(p.toString());
+         this.textoFinal.setText(p.pedido());
          
     }//GEN-LAST:event_listaIngredientesValueChanged
 
@@ -296,17 +311,17 @@ public class pizzeria4 extends javax.swing.JFrame {
        tam=(String)this.spinnerTamaño.getValue(); 
         if(tam.equalsIgnoreCase("Mediana")){
            p.setTamaño("Mediana");
-           this.textoFinal.setText(p.toString());
+           this.textoFinal.setText(p.pedido());
               
         }
        if(tam.equalsIgnoreCase("Familiar")){
            p.setTamaño("Familiar"); 
-           this.textoFinal.setText(p.toString());
+           this.textoFinal.setText(p.pedido());
            
        }
        if(tam.equalsIgnoreCase("Pequeña")){
            p.setTamaño("Pequeña"); 
-           this.textoFinal.setText(p.toString());
+           this.textoFinal.setText(p.pedido());
            
        }
        
@@ -314,13 +329,13 @@ public class pizzeria4 extends javax.swing.JFrame {
 
     private void rButonNItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rButonNItemStateChanged
         p.setMasa("Normal");
-        this.textoFinal.setText(p.toString());
+        this.textoFinal.setText(p.pedido());
     }//GEN-LAST:event_rButonNItemStateChanged
 
     private void rButonIItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rButonIItemStateChanged
        
         p.setMasa("Integral");
-         this.textoFinal.setText(p.toString());
+         this.textoFinal.setText(p.pedido());
     }//GEN-LAST:event_rButonIItemStateChanged
 
     private void listaTiposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listaTiposItemStateChanged
@@ -343,7 +358,7 @@ public class pizzeria4 extends javax.swing.JFrame {
              p.setTipo("Barbacoa");
 
         }
-        this.textoFinal.setText(p.toString());
+        this.textoFinal.setText(p.pedido());
     }//GEN-LAST:event_listaTiposItemStateChanged
 
     private void botonFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFacturaActionPerformed
@@ -356,6 +371,17 @@ public class pizzeria4 extends javax.swing.JFrame {
        }
       
     }//GEN-LAST:event_botonFacturaActionPerformed
+
+    private void botonCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarActionPerformed
+        boolean res=p.cargarPrecios();
+        p.calcularPrecio();
+        if(res=true){
+            JOptionPane.showMessageDialog(rootPane,"Precios Cargados");
+        }else {
+            JOptionPane.showMessageDialog(rootPane,"Precios no cargados",null,JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_botonCargarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,6 +428,7 @@ public class pizzeria4 extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCargar;
     private javax.swing.JButton botonFactura;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

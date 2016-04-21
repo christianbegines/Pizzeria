@@ -1,0 +1,13 @@
+Normal:9
+Integral:9.5
+Basica:3
+CuatroQuesos:5.0
+Barbacoa:7.0
+Mexicana:8.5
+Ijamon:0.50
+Iqueso:0.75
+Itomate:1.5
+Icebolla:2.50
+Ioliva:1
+Pmediana:0.15
+Pgrande:0.30

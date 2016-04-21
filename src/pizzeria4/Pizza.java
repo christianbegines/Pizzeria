@@ -12,6 +12,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import pizzeria3.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.List;
  * @author daw1
  */
 public class Pizza {
-
+    DecimalFormat d=new DecimalFormat("##.##");
     String masa;
     String tipo;
     String tamaño;
@@ -33,19 +35,19 @@ public class Pizza {
     private Double precioIngredientes = 0.0;
     private Double precioTotal = 0.0;
 
-    private final double MASANORMAL = 9.0;
-    private final double MASAINTEGRAL = 9.5;
-    private final double TBASICA = 3.0;
-    private final double TCUATRO = 5.0;
-    private final double TBBQ = 7.0;
-    private final double TMEX = 8.5;
-    private final double IJAMON = 0.50;
-    private final double IQUESO = 0.75;
-    private final double ITOMATE = 1.5;
-    private final double ICEBOLLA = 2.50;
-    private final double IOLIVAS = 1;
-    private final double PMEDIANA = 0.15;
-    private final double PGRANDE = 0.30;
+    private double MASANORMAL ;
+    private  double MASAINTEGRAL ;
+    private double TBASICA ;
+    private double TCUATRO ;
+    private double TBBQ ;
+    private double TMEX ;
+    private double IJAMON ;
+    private double IQUESO ;
+    private double ITOMATE ;
+    private double ICEBOLLA ;
+    private  double IOLIVAS ;
+    private double PMEDIANA ;
+    private  double PGRANDE ;
 
     public Pizza(String masa, String tipo, String tamaño, List<String> ingredientes) {
         this.masa = masa;
@@ -157,30 +159,75 @@ public class Pizza {
 
     }
 
-    @Override
-    public String toString() {
+    
+    public String pedido() {
         double precio = this.calcularPrecio();
         return "Pizza:|Tipo de masa: " + masa
                 + "/Precio masa : " + precioMasa + "|"
-                + "\n" + "|Tipo de pizaa: " + tipo + "/Precio tipo: " + precioTipo
-                + "|" + "\n" + "|Ingredientes :" + listaIngredientes.toString() + "\n"
-                + "/Precio ing :" + precioIngredientes.toString() + "\n"
-                + "|Tamaño: " + tamaño + "/Precio  " + precioTamaño + "\n"
+                + "\r\n" + "|Tipo de pizaa: " + tipo + "/Precio tipo: " + precioTipo
+                + "\r\n" + "|Ingredientes :" + listaIngredientes.toString() + "\r\n"
+                + "/Precio ing :" + precioIngredientes.toString() + "\r\n"
+                + "|Tamaño: " + tamaño + "/Precio  " + d.format(precioTamaño )+ "\r\n"
                 + "|PRECIO TOTAL= " + precio;
         //   
     }
 
     public boolean generarTicket() {
         boolean res = true;
+        LocalDateTime hoy= LocalDateTime.now();
         try (FileWriter t = new FileWriter("Factura.txt");
-                BufferedWriter factura = new BufferedWriter(t)) {
-
-            factura.write(this.toString());
+            BufferedWriter factura = new BufferedWriter(t)) {
+            factura.write(hoy.toString());
+            factura.newLine();
+            factura.write(this.pedido());
 
         } catch (FileNotFoundException ex) {
             res = false;
         } catch (IOException ex) {
             res=false;
+        }
+        return res;
+    }
+    public  boolean cargarPrecios(){
+        String nombre,linea;
+        String precio;
+        boolean res=true;
+        try(FileReader r= new FileReader("CartaPrecios.txt");
+            BufferedReader br = new BufferedReader(r);){
+            while((linea=br.readLine())!=null){               
+                String [] dato=linea.split(":");
+                nombre=dato[0];
+                switch(nombre){
+                    case "Normal": this.MASANORMAL=Double.parseDouble(dato[1]);
+                        break;
+                    case "Integral": this.MASAINTEGRAL=Double.parseDouble(dato[1]);
+                        break;
+                    case "Basica": this.TBASICA=Double.parseDouble(dato[1]);
+                        break;
+                    case "CuatroQuesos": this.TCUATRO=Double.parseDouble(dato[1]);
+                        break;
+                    case "Barbacoa": this.TBBQ=Double.parseDouble(dato[1]);
+                        break;
+                    case "Mexicana": this.TMEX=Double.parseDouble(dato[1]);
+                    case "Ijamon": this.IJAMON=Double.parseDouble(dato[1]);
+                        break;
+                    case "Icebolla": this.ICEBOLLA=Double.parseDouble(dato[1]);
+                        break;
+                    case "Iolivas": this.IOLIVAS=Double.parseDouble(dato[1]);
+                        break;
+                    case "Itomate": this.ITOMATE=Double.parseDouble(dato[1]);
+                        break;
+                    case "Iqueso": this.IQUESO=Double.parseDouble(dato[1]);
+                        break;
+                    case "Pmediana":this.PMEDIANA=Double.parseDouble(dato[1]);
+                        break;
+                    case "Pgrande":this.PGRANDE=Double.parseDouble(dato[1]);                   
+                }               
+            }                   
+        }catch (FileNotFoundException ex) {
+            res=false;
+        } catch (IOException ex) {
+           res=false;
         }
         return res;
     }
