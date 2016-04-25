@@ -27,11 +27,11 @@ import java.util.List;
 public class Pizza {
 
     DecimalFormat d = new DecimalFormat("##.##");
-    String masa;
-    String tipo;
-    String tamaño;
+    private String masa;
+    private String tipo;
+    private String tamaño;
     int contadorTicket = 1;
-    List<String> listaIngredientes = new ArrayList();
+    private List<String> listaIngredientes = new ArrayList();
 
     private Double precioMasa = 0.0;
     private Double precioTipo = 0.0;
